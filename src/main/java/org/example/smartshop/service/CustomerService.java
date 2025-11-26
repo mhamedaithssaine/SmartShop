@@ -1,7 +1,9 @@
 package org.example.smartshop.service;
 
 import org.example.smartshop.dto.request.CustomerRequest;
+import org.example.smartshop.dto.request.CustomerUpdateRequest;
 import org.example.smartshop.dto.response.CustomerResponse;
+import org.example.smartshop.exception.ResourceNotFoundException;
 import org.example.smartshop.exception.ValidationException;
 import org.example.smartshop.mapper.CustomerMapper;
 import org.example.smartshop.model.Customer;
@@ -46,8 +48,45 @@ public class CustomerService {
         customer.setUser(user);
         customer = customerRepository.save(customer);
         return customerMapper.toResponse(customer);
-
-
     }
+
+    // get customer by id
+    @Transactional
+    public CustomerResponse findById(Long id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer non trouvé avec l'ID: " + id));
+        return customerMapper.toResponse(customer);
+    }
+
+    // update
+    @Transactional
+    public CustomerResponse update(Long id, CustomerUpdateRequest  request) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer non trouvé avec l'ID: " + id));
+
+        if (!customer.getEmail().equals(request.getEmail()) && customerRepository.existsByEmail(request.getEmail())) {
+            throw new ValidationException("Ce email existe déjà !");
+        }
+
+        customer.setNom(request.getNom());
+        customer.setEmail(request.getEmail());
+        customer.setTelephone(request.getTelephone());
+
+        if (!customer.getUser().getUsername().equals(request.getEmail())) {
+            if (userRepository.existsByUsername(request.getEmail())) {
+                throw new ValidationException("Ce username existe déjà !");
+            }
+            customer.getUser().setUsername(request.getEmail());
+        }
+
+        if (request.getPassword() != null && !request.getPassword().isEmpty()) {
+            customer.getUser().setPassword(request.getPassword());
+        }
+
+        customer = customerRepository.save(customer);
+        return customerMapper.toResponse(customer);
+    }
+
+
 
 }

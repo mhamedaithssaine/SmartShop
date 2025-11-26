@@ -2,15 +2,13 @@ package org.example.smartshop.controller.api;
 
 import jakarta.validation.Valid;
 import org.example.smartshop.dto.request.CustomerRequest;
+import org.example.smartshop.dto.request.CustomerUpdateRequest;
 import org.example.smartshop.dto.response.CustomerResponse;
 import org.example.smartshop.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/customers")
@@ -26,4 +24,15 @@ public class CustomerContorller {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable Long id){
+        CustomerResponse response = customerService.findById(id);
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerUpdateRequest request) {
+        CustomerResponse response = customerService.update(id, request);
+        return ResponseEntity.ok(response);
+    }
 }
