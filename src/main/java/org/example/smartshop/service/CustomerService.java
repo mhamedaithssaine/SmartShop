@@ -87,6 +87,15 @@ public class CustomerService {
         return customerMapper.toResponse(customer);
     }
 
+    // delete
+    @Transactional
+    public void delete(Long id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer non trouvé avec l'ID: " + id));
+
+        customerRepository.delete(customer);
+    }
+
 
 
 }
