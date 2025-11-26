@@ -1,6 +1,7 @@
 package org.example.smartshop.controller.api;
 
 import jakarta.validation.Valid;
+import org.example.smartshop.dto.api.reponse.ApiRetour;
 import org.example.smartshop.dto.request.CustomerRequest;
 import org.example.smartshop.dto.request.CustomerUpdateRequest;
 import org.example.smartshop.dto.response.CustomerResponse;
@@ -19,20 +20,27 @@ public class CustomerContorller {
 
 
     @PostMapping("/create")
-    public ResponseEntity<CustomerResponse> create(@Valid @RequestBody CustomerRequest request) {
+    public ResponseEntity<ApiRetour<CustomerResponse>> create(@Valid @RequestBody CustomerRequest request) {
         CustomerResponse response = customerService.create(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiRetour.success("Client créer avec succéss",response));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable Long id){
+    public ResponseEntity<ApiRetour<CustomerResponse>> getCustomerById(@PathVariable Long id){
         CustomerResponse response = customerService.findById(id);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiRetour.success("Client recupére avec succéss",response));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerUpdateRequest request) {
+    public ResponseEntity<ApiRetour<CustomerResponse>> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerUpdateRequest request) {
         CustomerResponse response = customerService.update(id, request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiRetour.success("Client mise à jour avec succéss",response));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiRetour<Void>> deleteCustomer(@PathVariable Long id) {
+        customerService.delete(id);
+        return ResponseEntity.ok(ApiRetour.success("Client supprime avec succéss"));
+    }
+
 }
