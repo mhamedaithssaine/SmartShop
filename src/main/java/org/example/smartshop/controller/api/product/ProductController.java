@@ -53,5 +53,35 @@ public class ProductController {
         );
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiRetour<ProductResponse>> getProductById(@PathVariable Long id) {
+        ProductResponse response = productService.findById(id);
+        return ResponseEntity.ok(
+                ApiRetour.success("Produit récupéré avec succès", response)
+        );
+    }
+
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiRetour<List<ProductResponse>>> searchProducts(@RequestParam String nom) {
+        List<ProductResponse> products = productService.searchByNom(nom);
+        return ResponseEntity.ok(
+                ApiRetour.success("Résultats de recherche récupérés", products)
+        );
+    }
+
+
+    @GetMapping("/categorie/{categorie}")
+    public ResponseEntity<ApiRetour<List<ProductResponse>>> getProductsByCategorie(@PathVariable String categorie) {
+        List<ProductResponse> products = productService.findByCategorie(categorie);
+        return ResponseEntity.ok(
+                ApiRetour.success("Produits de la catégorie récupérés", products)
+        );
+    }
+
+
+
+
+
 
 }
