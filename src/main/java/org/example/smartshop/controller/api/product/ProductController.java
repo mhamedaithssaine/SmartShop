@@ -26,5 +26,12 @@ public class ProductController {
                 .body(ApiRetour.success("Produit créé avec succès", response));
     }
 
+    @GetMapping
+    public ResponseEntity<ApiRetour<List<ProductResponse>>> getAllProducts() {
+        List<ProductResponse> products = productService.findAll();
+        return ResponseEntity.ok(
+                ApiRetour.success("Liste des produits récupérée avec succès", products)
+        );
+    }
 
 }
