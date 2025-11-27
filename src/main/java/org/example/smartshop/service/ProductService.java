@@ -30,5 +30,13 @@ public class ProductService {
         return productMapper.toResponse(product);
     }
 
+    // Liste Produit
+    @Transactional(readOnly = true)
+    public List<ProductResponse> findAll() {
+        return productRepository.findByIsDeletedFalse()
+                .stream()
+                .map(productMapper::toResponse)
+                .collect(Collectors.toList());
+    }
 
 }
