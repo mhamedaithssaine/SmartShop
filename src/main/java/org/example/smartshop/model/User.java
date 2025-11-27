@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.smartshop.model.enums.UserRole;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -31,4 +33,10 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Customer customer;
+
+    @Column(name = "last_login_at")
+    private LocalDateTime lastLoginAt;
+
+    @Column(name = "last_logout_at")
+    private LocalDateTime lastLogoutAt;
 }
