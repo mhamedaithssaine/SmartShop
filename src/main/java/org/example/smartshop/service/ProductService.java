@@ -64,4 +64,31 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    // Consulte by id
+    @Transactional(readOnly = true)
+    public ProductResponse findById(Long id) {
+        Product product = productRepository.findByIdAndNotDeleted(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Produit non trouvé avec l'ID: " + id));
+        return productMapper.toResponse(product);
+    }
+
+
+    // Rechercher by nom
+    @Transactional(readOnly = true)
+    public List<ProductResponse> searchByNom(String nom) {
+        return productRepository.findByIsDeletedFalseAndNomContainingIgnoreCase(nom)
+                .stream()
+                .map(productMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    // Filtrer by catégorie
+    @Transactional(readOnly = true)
+    public List<ProductResponse> findByCategorie(String categorie) {
+        return productRepository.findByIsDeletedFalseAndCategorie(categorie)
+                .stream()
+                .map(productMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
 }
