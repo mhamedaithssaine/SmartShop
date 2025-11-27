@@ -34,4 +34,16 @@ public class ProductController {
         );
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiRetour<ProductResponse>> updateProduct(
+            @PathVariable Long id,
+            @Valid @RequestBody ProductRequest request) {
+
+        ProductResponse response = productService.update(id, request);
+        return ResponseEntity.ok(
+                ApiRetour.success("Produit mis à jour avec succès", response)
+        );
+    }
+
+
 }

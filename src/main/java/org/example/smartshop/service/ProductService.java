@@ -39,4 +39,19 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    // Modifier un produit
+    @Transactional
+    public ProductResponse update(Long id, ProductRequest request) {
+        Product product = productRepository.findByIdAndNotDeleted(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Produit non trouvé avec l'ID: " + id));
+
+        product.setNom(request.getNom());
+        product.setPrixUnitaire(request.getPrixUnitaire());
+        product.setStockDisponible(request.getStockDisponible());
+        product.setCategorie(request.getCategorie());
+
+        product = productRepository.save(product);
+        return productMapper.toResponse(product);
+    }
+
 }
