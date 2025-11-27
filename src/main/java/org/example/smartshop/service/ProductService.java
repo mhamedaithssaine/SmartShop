@@ -54,4 +54,14 @@ public class ProductService {
         return productMapper.toResponse(product);
     }
 
+    // Soft delete
+    @Transactional
+    public void delete(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Produit non trouvé avec l'ID: " + id));
+
+        product.setIsDeleted(true);
+        productRepository.save(product);
+    }
+
 }
