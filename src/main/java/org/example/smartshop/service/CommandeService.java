@@ -39,7 +39,7 @@ public class CommandeService {
     @Transactional
     public CommandeResponse creerCommande(CommandeRequest request) {
 
-        Customer customer = customerRepository.findById(request.getCustomerId())
+            Customer customer = customerRepository.findById(request.getCustomerId())
                 .orElseThrow(() -> new ResourceNotFoundException("Client non trouvé"));
 
         if (request.getCodePromo() != null && !request.getCodePromo().isEmpty()) {
