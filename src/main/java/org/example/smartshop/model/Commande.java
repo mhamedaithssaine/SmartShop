@@ -35,7 +35,6 @@ public class Commande {
     @Builder.Default
     private CommandeStatut statut = CommandeStatut.PENDING;
 
-    // Montants
     @Column(name = "sous_total", nullable = false, precision = 10, scale = 2)
     private BigDecimal sousTotal;
 
@@ -63,7 +62,6 @@ public class Commande {
     @Column(name = "montant_restant", nullable = false, precision = 10, scale = 2)
     private BigDecimal montantRestant;
 
-    // Code promo
     @Column(name = "code_promo", length = 20)
     private String codePromo;
 
@@ -77,6 +75,9 @@ public class Commande {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Payment> payments = new ArrayList<>();
 
     @PreUpdate
     protected void onUpdate() {

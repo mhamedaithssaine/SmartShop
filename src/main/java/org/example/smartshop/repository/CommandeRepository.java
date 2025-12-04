@@ -11,5 +11,6 @@ import java.util.List;
 public interface CommandeRepository extends JpaRepository<Commande, Long> {
 
     boolean existsByCustomerIdAndCodePromo(Long customerId, String codePromo);
+    List<Commande> findByCustomerId(Long customerId);
 
 }

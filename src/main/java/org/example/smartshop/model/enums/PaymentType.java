@@ -1,6 +1,6 @@
 package org.example.smartshop.model.enums;
 
-public enum PaymentMethod {
+public enum PaymentType {
     ESPECES,
     CHEQUE,
     VIREMENT
