@@ -13,6 +13,8 @@ public interface CommandeMapper {
     @Mapping(source = "customer.id", target = "customerId")
     @Mapping(source = "customer.nom", target = "customerNom")
     @Mapping(source = "customer.tier", target = "customerTier")
+    @Mapping(source = "customer.totalOrders",target = "customerTotalOrders")
+    @Mapping(source = "customer.totalSpent", target = "customerTotalSpent")
     CommandeResponse toResponse(Commande commande);
 
     @Mapping(source = "product.id", target = "productId")

@@ -284,9 +284,7 @@ public class CommandeService {
     // calcule niveau de fidélité
     private CustomerTier calculerNouveauTier(Customer customer) {
         int totalOrders = customer.getTotalOrders() == null ? 0 : customer.getTotalOrders();
-        BigDecimal totalSpent = customer.getTotalSpent() == null
-                ? BigDecimal.ZERO
-                : customer.getTotalSpent();
+        BigDecimal totalSpent = customer.getTotalSpent() == null ? BigDecimal.ZERO : customer.getTotalSpent();
 
         if (totalOrders >= 20 || totalSpent.compareTo(BigDecimal.valueOf(15000)) >= 0) {
             return CustomerTier.PLATINUM;
