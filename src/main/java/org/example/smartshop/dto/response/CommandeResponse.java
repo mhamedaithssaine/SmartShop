@@ -16,6 +16,8 @@ import java.util.List;
         "customerId",
         "customerNom",
         "customerTier",
+        "customerTotalOrders",
+        "customerTotalSpent",
         "statut",
         "lignes",
         "sousTotal",
@@ -36,6 +38,8 @@ public class CommandeResponse {
     private Long customerId;
     private String customerNom;
     private CustomerTier customerTier;
+    private Integer customerTotalOrders;
+    private BigDecimal customerTotalSpent;
     private CommandeStatut statut;
     private List<CommandeLigneResponse> lignes;
 
