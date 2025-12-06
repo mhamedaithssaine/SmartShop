@@ -21,7 +21,6 @@ public class CommandeController {
     private CommandeService commandeService;
 
 
-    // 1) créer commande
     @PostMapping
     public ResponseEntity<ApiRetour<CommandeResponse>> creerCommande(@Valid @RequestBody CommandeRequest request) {
 
@@ -35,7 +34,6 @@ public class CommandeController {
                 .body(ApiRetour.success(message, response));
     }
 
-    // 2) get commande by id
     @GetMapping("/{id}")
     public ResponseEntity<ApiRetour<CommandeResponse>> getCommandeById(@PathVariable Long id) {
         CommandeResponse response = commandeService.getCommandeById(id);
@@ -44,7 +42,6 @@ public class CommandeController {
         );
     }
 
-    // 3) Historique des commandes
     @GetMapping("/client/{customerId}")
     public ResponseEntity<ApiRetour<List<CommandeResponse>>> getCommandesByCustomer(@PathVariable Long customerId) {
 
@@ -54,7 +51,6 @@ public class CommandeController {
         );
     }
 
-    // 4) confirmation  commande
     @PostMapping("/{id}/confirmer")
     public ResponseEntity<ApiRetour<CommandeResponse>> confirmerCommande(@PathVariable Long id) {
 
@@ -66,7 +62,6 @@ public class CommandeController {
 
 
 
-    // annule commande
     @PostMapping("/{id}/annuler")
     public ResponseEntity<ApiRetour<CommandeResponse>> annulerCommande(@PathVariable Long id) {
 
