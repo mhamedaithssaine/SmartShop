@@ -1,5 +1,6 @@
 package org.example.smartshop.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 import org.example.smartshop.model.enums.CustomerTier;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
         "createdAt",
         "updatedAt"
 })
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerResponse {
     private Long id;
 

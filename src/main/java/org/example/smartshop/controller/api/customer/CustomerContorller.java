@@ -1,4 +1,4 @@
-package org.example.smartshop.controller.api;
+package org.example.smartshop.controller.api.customer;
 
 import jakarta.validation.Valid;
 import org.example.smartshop.dto.api.reponse.ApiRetour;
