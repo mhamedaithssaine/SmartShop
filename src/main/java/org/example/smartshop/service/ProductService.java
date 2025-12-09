@@ -22,7 +22,6 @@ public class ProductService {
     @Autowired
     private ProductMapper productMapper;
 
-    // Créer un produit
     @Transactional
     public ProductResponse create(ProductRequest request) {
         Product product = productMapper.toEntity(request);
@@ -30,7 +29,6 @@ public class ProductService {
         return productMapper.toResponse(product);
     }
 
-    // Liste Produit
     @Transactional(readOnly = true)
     public List<ProductResponse> findAll() {
         return productRepository.findByIsDeletedFalse()
@@ -39,7 +37,6 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    // Modifier un produit
     @Transactional
     public ProductResponse update(Long id, ProductRequest request) {
         Product product = productRepository.findByIdAndNotDeleted(id)
@@ -54,7 +51,6 @@ public class ProductService {
         return productMapper.toResponse(product);
     }
 
-    // Soft delete
     @Transactional
     public void delete(Long id) {
         Product product = productRepository.findById(id)
@@ -64,7 +60,6 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    // Consulte by id
     @Transactional(readOnly = true)
     public ProductResponse findById(Long id) {
         Product product = productRepository.findByIdAndNotDeleted(id)
@@ -73,7 +68,6 @@ public class ProductService {
     }
 
 
-    // Rechercher by nom
     @Transactional(readOnly = true)
     public List<ProductResponse> searchByNom(String nom) {
         return productRepository.findByIsDeletedFalseAndNomContainingIgnoreCase(nom)
@@ -82,7 +76,6 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    // Filtrer by catégorie
     @Transactional(readOnly = true)
     public List<ProductResponse> findByCategorie(String categorie) {
         return productRepository.findByIsDeletedFalseAndCategorie(categorie)
