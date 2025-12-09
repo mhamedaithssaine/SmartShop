@@ -84,8 +84,4 @@ public class Commande {
         updatedAt = LocalDateTime.now();
     }
 
-    public void ajouterLigne(CommandeLigne ligne) {
-        lignes.add(ligne);
-        ligne.setCommande(this);
-    }
 }
