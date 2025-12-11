@@ -2,6 +2,7 @@ package org.example.smartshop.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Builder;
 import lombok.Data;
 import org.example.smartshop.model.enums.CommandeStatut;
 import org.example.smartshop.model.enums.CustomerTier;
@@ -32,6 +33,7 @@ import java.util.List;
         "createdAt",
         "updatedAt"
 })
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CommandeResponse {
     private Long id;
