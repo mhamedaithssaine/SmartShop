@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class CommandeRequest {
 
     @NotNull(message = "L'ID du client est obligatoire")
