@@ -9,6 +9,7 @@ import org.example.smartshop.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +19,11 @@ public class CustomerContorller {
     @Autowired
     private CustomerService customerService;
 
+    @GetMapping
+    public ResponseEntity<ApiRetour<List<CustomerResponse>>> getAllCustomers() {
+        List<CustomerResponse> responses = customerService.findAll();
+        return ResponseEntity.ok(ApiRetour.success("Liste des clients récupérée avec succès", responses));
+    }
 
     @PostMapping("/create")
     public ResponseEntity<ApiRetour<CustomerResponse>> create(@Valid @RequestBody CustomerRequest request) {

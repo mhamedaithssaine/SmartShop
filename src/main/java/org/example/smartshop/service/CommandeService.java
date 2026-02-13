@@ -154,6 +154,21 @@ public class CommandeService {
         commande.setMontantRestant(BigDecimal.ZERO);
     }
 
+    @Transactional(readOnly = true)
+    public List<CommandeResponse> getCommandes(CommandeStatut statut, Long customerId) {
+        List<Commande> commandes;
+        if (customerId != null && statut != null) {
+            commandes = commandeRepository.findByCustomerIdAndStatut(customerId, statut);
+        } else if (customerId != null) {
+            commandes = commandeRepository.findByCustomerId(customerId);
+        } else if (statut != null) {
+            commandes = commandeRepository.findByStatut(statut);
+        } else {
+            commandes = commandeRepository.findAll();
+        }
+        return commandes.stream().map(commandeMapper::toResponse).toList();
+    }
+
     // get commande by id
     @Transactional(readOnly = true)
     public CommandeResponse getCommandeById(Long id) {
