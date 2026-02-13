@@ -20,6 +20,15 @@ public class CommandeController {
     @Autowired
     private CommandeService commandeService;
 
+    @GetMapping
+    public ResponseEntity<ApiRetour<List<CommandeResponse>>> getCommandes(
+            @RequestParam(required = false) CommandeStatut statut,
+            @RequestParam(required = false) Long customerId) {
+        List<CommandeResponse> responses = commandeService.getCommandes(statut, customerId);
+        return ResponseEntity.ok(
+                ApiRetour.success("Liste des commandes récupérée avec succès", responses)
+        );
+    }
 
     @PostMapping
     public ResponseEntity<ApiRetour<CommandeResponse>> creerCommande(@Valid @RequestBody CommandeRequest request) {

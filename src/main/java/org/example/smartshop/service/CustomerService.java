@@ -12,6 +12,7 @@ import org.example.smartshop.model.enums.UserRole;
 import org.example.smartshop.repository.CustomerRepository;
 import org.example.smartshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,8 +51,15 @@ public class CustomerService {
         return customerMapper.toResponse(customer);
     }
 
+    @Transactional(readOnly = true)
+    public List<CustomerResponse> findAll() {
+        return customerRepository.findAll().stream()
+                .map(customerMapper::toResponse)
+                .toList();
+    }
+
     // get customer by id
-    @Transactional
+    @Transactional(readOnly = true)
     public CustomerResponse findById(Long id) {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Customer non trouvé avec l'ID: " + id));
