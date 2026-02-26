@@ -12,5 +12,7 @@ public interface CommandeRepository extends JpaRepository<Commande, Long> {
 
     boolean existsByCustomerIdAndCodePromo(Long customerId, String codePromo);
     List<Commande> findByCustomerId(Long customerId);
+    List<Commande> findByStatut(CommandeStatut statut);
+    List<Commande> findByCustomerIdAndStatut(Long customerId, CommandeStatut statut);
 
 }

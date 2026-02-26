@@ -1,0 +1,125 @@
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { productApi } from '../../api/productApi.js';
+import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
+import { Button } from '../../components/ui/Button.jsx';
+import { Input } from '../../components/ui/Input.jsx';
+
+export function ProductEdit() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [nom, setNom] = useState('');
+  const [prixUnitaire, setPrixUnitaire] = useState('');
+  const [stockDisponible, setStockDisponible] = useState('');
+  const [categorie, setCategorie] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const data = await productApi.getById(id);
+        if (!cancelled) {
+          setNom(data.nom || '');
+          setPrixUnitaire(String(data.prixUnitaire ?? ''));
+          setStockDisponible(String(data.stockDisponible ?? ''));
+          setCategorie(data.categorie || '');
+        }
+      } catch (e) {
+        if (!cancelled) setError(e.message || 'Produit introuvable');
+      } finally {
+        if (!cancelled) setLoadingData(false);
+      }
+    }
+    if (id) load();
+    return () => { cancelled = true; };
+  }, [id]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      await productApi.update(id, {
+        nom,
+        prixUnitaire: Number(prixUnitaire) || 0,
+        stockDisponible: Number(stockDisponible) || 0,
+        categorie: categorie || null,
+      });
+      navigate('/products');
+    } catch (err) {
+      setError(err.errors ? Object.values(err.errors).join(', ') : err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm('Supprimer ce produit ? (soft delete)')) return;
+    setLoading(true);
+    try {
+      await productApi.delete(id);
+      navigate('/products');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loadingData) {
+    return (
+      <div className="flex justify-center py-12">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary-600 border-t-transparent" />
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="max-w-2xl"
+    >
+      <Card>
+        <CardHeader title="Modifier le produit" />
+        <CardBody>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Input label="Nom" value={nom} onChange={(e) => setNom(e.target.value)} required />
+            <Input
+              label="Prix unitaire HT (DH)"
+              type="number"
+              step="0.01"
+              min="0.01"
+              value={prixUnitaire}
+              onChange={(e) => setPrixUnitaire(e.target.value)}
+              required
+            />
+            <Input
+              label="Stock disponible"
+              type="number"
+              min="0"
+              value={stockDisponible}
+              onChange={(e) => setStockDisponible(e.target.value)}
+              required
+            />
+            <Input label="Catégorie" value={categorie} onChange={(e) => setCategorie(e.target.value)} />
+            {error && <p className="text-sm text-red-600">{error}</p>}
+            <div className="flex flex-wrap gap-3">
+              <Button type="submit" loading={loading}>Enregistrer</Button>
+              <Button type="button" variant="secondary" onClick={() => navigate('/products')}>
+                Annuler
+              </Button>
+              <Button type="button" variant="danger" onClick={handleDelete} disabled={loading}>
+                Supprimer
+              </Button>
+            </div>
+          </form>
+        </CardBody>
+      </Card>
+    </motion.div>
+  );
+}
