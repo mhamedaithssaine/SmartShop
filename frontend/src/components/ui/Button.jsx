@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 
 const variants = {
-  primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
+  primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
   secondary: 'bg-slate-200 text-slate-800 hover:bg-slate-300 focus:ring-slate-400',
   danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+  success: 'bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500',
   ghost: 'bg-transparent text-slate-700 hover:bg-slate-100 focus:ring-slate-300',
 };
 

@@ -37,12 +37,12 @@ export function Login() {
         transition={{ duration: 0.3 }}
         className="w-full max-w-md"
       >
-        <div className="card p-8 shadow-lg">
-          <div className="mb-8 text-center">
+        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-lg sm:p-8">
+          <div className="mb-6 text-center">
             <h1 className="text-2xl font-bold text-primary-600">SmartShop</h1>
             <p className="mt-2 text-slate-600">Connexion à votre espace B2B</p>
           </div>
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <Input
               label="Email / Identifiant"
               type="text"
@@ -71,7 +71,13 @@ export function Login() {
                 {error}
               </motion.p>
             )}
-            <Button type="submit" className="w-full" loading={loading} disabled={loading}>
+            <Button
+              type="submit"
+              variant="primary"
+              className="w-full min-h-[48px] bg-primary-600 py-3 text-base font-semibold text-white hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              loading={loading}
+              disabled={loading}
+            >
               Se connecter
             </Button>
           </form>

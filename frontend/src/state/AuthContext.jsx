@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { authApi } from '../api/authApi.js';
+import { USER_ROLE } from '../constants/backend.js';
 
 const AuthContext = createContext(null);
 
@@ -42,7 +43,7 @@ export function AuthProvider({ children }) {
     user,
     loading,
     isAuthenticated: !!user,
-    isAdmin: user?.role === 'ADMIN',
+    isAdmin: user?.role === USER_ROLE.ADMIN,
     login,
     logout,
     refreshUser: loadUser,

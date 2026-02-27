@@ -26,6 +26,19 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+function AdminRoute({ children }) {
+  const { isAdmin, loading } = useAuth();
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary-600 border-t-transparent" />
+      </div>
+    );
+  }
+  if (!isAdmin) return <Navigate to="/orders" replace />;
+  return children;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -41,14 +54,14 @@ export default function App() {
         >
           <Route index element={<Navigate to="/products" replace />} />
           <Route path="products" element={<ProductList />} />
-          <Route path="products/new" element={<ProductNew />} />
-          <Route path="products/:id/edit" element={<ProductEdit />} />
-          <Route path="clients" element={<ClientList />} />
-          <Route path="clients/new" element={<ClientNew />} />
-          <Route path="clients/:id" element={<ClientDetail />} />
-          <Route path="clients/:id/edit" element={<ClientEdit />} />
+          <Route path="products/new" element={<AdminRoute><ProductNew /></AdminRoute>} />
+          <Route path="products/:id/edit" element={<AdminRoute><ProductEdit /></AdminRoute>} />
+          <Route path="clients" element={<AdminRoute><ClientList /></AdminRoute>} />
+          <Route path="clients/new" element={<AdminRoute><ClientNew /></AdminRoute>} />
+          <Route path="clients/:id" element={<AdminRoute><ClientDetail /></AdminRoute>} />
+          <Route path="clients/:id/edit" element={<AdminRoute><ClientEdit /></AdminRoute>} />
           <Route path="orders" element={<OrderList />} />
-          <Route path="orders/new" element={<OrderNew />} />
+          <Route path="orders/new" element={<AdminRoute><OrderNew /></AdminRoute>} />
           <Route path="orders/:id" element={<OrderDetail />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />

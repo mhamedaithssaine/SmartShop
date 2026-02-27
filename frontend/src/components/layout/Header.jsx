@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../state/AuthContext.jsx';
+import { USER_ROLE } from '../../constants/backend.js';
 import { Button } from '../ui/Button.jsx';
 import { motion } from 'framer-motion';
 
@@ -23,7 +24,7 @@ export function Header() {
         className="flex items-center gap-3"
       >
         <span className="text-sm text-slate-600">
-          {user?.role === 'ADMIN' ? 'Admin' : 'Client'}
+          {user?.role === USER_ROLE.ADMIN ? 'Admin' : 'Client'}
         </span>
         <Button variant="ghost" size="sm" onClick={handleLogout}>
           Déconnexion
