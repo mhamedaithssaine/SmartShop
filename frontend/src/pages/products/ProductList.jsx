@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { productApi } from '../../api/productApi.js';
+import { useAuth } from '../../state/AuthContext.jsx';
 import { Table } from '../../components/ui/Table.jsx';
 import { Pagination } from '../../components/ui/Pagination.jsx';
 import { Button } from '../../components/ui/Button.jsx';
@@ -12,6 +13,7 @@ import { formatAmount } from '../../utils/format.js';
 const PAGE_SIZE = 10;
 
 export function ProductList() {
+  const { isAdmin } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -50,15 +52,17 @@ export function ProductList() {
     { key: 'prixUnitaire', label: 'Prix HT', render: (v) => formatAmount(v) },
     { key: 'stockDisponible', label: 'Stock' },
     { key: 'categorie', label: 'Catégorie' },
-    {
-      key: 'id',
-      label: 'Actions',
-      render: (id) => (
-        <Link to={`/products/${id}/edit`}>
-          <Button variant="secondary" size="sm">Modifier</Button>
-        </Link>
-      ),
-    },
+    ...(isAdmin
+      ? [{
+          key: 'id',
+          label: 'Actions',
+          render: (id) => (
+            <Link to={`/products/${id}/edit`}>
+              <Button variant="secondary" size="sm">Modifier</Button>
+            </Link>
+          ),
+        }]
+      : []),
   ];
 
   return (
@@ -67,9 +71,11 @@ export function ProductList() {
         <CardHeader
           title="Produits"
           action={
-            <Link to="/products/new">
-              <Button>Nouveau produit</Button>
-            </Link>
+            isAdmin && (
+              <Link to="/products/new">
+                <Button>Nouveau produit</Button>
+              </Link>
+            )
           }
         />
         <CardBody>

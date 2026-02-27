@@ -1,13 +1,13 @@
-const PROMO_REGEX = /^PROMO-[A-Z0-9]{4}$/;
+import { PROMO_CODE_PATTERN } from '../constants/backend.js';
 
 /**
- * Valide le format du code promo (PROMO-XXXX).
+ * Valide le format du code promo (PROMO-XXXX) – aligné backend CommandeRequest.
  * @param {string} code
  * @returns {boolean}
  */
 export function isValidPromoFormat(code) {
   if (!code || typeof code !== 'string') return false;
-  return PROMO_REGEX.test(code.trim().toUpperCase());
+  return PROMO_CODE_PATTERN.test(code.trim().toUpperCase());
 }
 
 /**

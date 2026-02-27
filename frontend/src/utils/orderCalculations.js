@@ -1,6 +1,5 @@
 import { roundAmount } from './format.js';
-
-const TVA_RATE = 0.2; // 20%
+import { TVA_RATE } from '../constants/backend.js';
 
 /**
  * Calcule le sous-total HT à partir des lignes.
