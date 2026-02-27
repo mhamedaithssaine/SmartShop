@@ -29,7 +29,12 @@ Fonctionnalités principales :
 
 ## 2. Architecture
 
-Organisation par packages principaux :
+Le projet est un **monorepo backend + frontend** :
+
+- Backend Java/Spring Boot (ce dépôt racine)
+- Frontend React (Vite) dans le dossier `frontend/`, qui consomme l’API REST exposée par ce backend (auth, produits, commandes, paiements, codes promo).
+
+### 2.1. Backend – organisation par packages principaux :
 
 - `controller.api.*` : contrôleurs REST (Auth, Users, Customers, Products, Commandes, Paiements, PromoCodes)
 - `service` : logique métier (CommandeService, PaymentService, CustomerService, ProductService, PromoCodeService, AuthService, UserService)
@@ -39,6 +44,34 @@ Organisation par packages principaux :
 - `mapper` : MapStruct (`UserMapper`, `CommandeMapper`, `PaymentMapper`, etc.)
 - `exception` : exceptions personnalisées + `GlobalExceptionHandler`
 - `util` : `SessionUtil` (aide pour la session HTTP)
+
+### 2.2. Frontend – client React B2B
+
+Le frontend SmartShop est une **application React** (bundler **Vite**) située dans le dossier `frontend/`.  
+Il fournit une interface B2B pour les équipes MicroTech (rôle ADMIN) et les clients (rôle CUSTOMER) en s’appuyant exclusivement sur cette API backend.
+
+- **Stack principale** :
+  - React + React Router
+  - Context API (`AuthContext`) pour la gestion de l’authentification et du rôle courant
+  - Axios avec une instance configurée (`axiosInstance`) pointant sur `http://localhost:8080/api`
+  - Tailwind CSS (config personnalisée dans `tailwind.config.js`) + quelques classes utilitaires globales (`index.css`)
+
+- **Fonctionnalités UI clés** :
+  - Écran de **connexion** (login) avec gestion des erreurs backend
+  - Liste et fiche **produits** (avec actions d’ajout / modification réservées à l’ADMIN)
+  - Liste et détail des **commandes**, incluant :
+    - visualisation des lignes, totaux, remises fidélité et codes promo
+    - gestion des **paiements fractionnés** (création, visualisation, changement de statut)
+  - Espace **clients** (consultation, création, édition) réservé à l’ADMIN
+  - Navigation protégée :
+    - routes publiques limitées à la page de login
+    - routes protégées par rôle (`AdminRoute`, vérifications du rôle courant avant d’afficher certaines sections ou actions)
+
+- **Lancement du frontend (développement)** :
+  - Se placer dans le dossier `frontend/`
+  - Installer les dépendances : `npm install`
+  - Démarrer le serveur de dev : `npm run dev`
+  - L’application est accessible par défaut sur `http://localhost:5173` et communique avec le backend sur `http://localhost:8080`.
 
 ---
 
