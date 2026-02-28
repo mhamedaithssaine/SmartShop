@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { productApi } from '../../api/productApi.js';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Button } from '../../components/ui/Button.jsx';
+import { Plus, X } from 'lucide-react';
 import { Input } from '../../components/ui/Input.jsx';
 
 export function ProductNew() {
@@ -66,9 +67,9 @@ export function ProductNew() {
             />
             {error && <p className="text-sm text-red-600">{error}</p>}
             <div className="flex gap-3">
-              <Button type="submit" loading={loading}>Créer</Button>
+              <Button type="submit" loading={loading}><Plus className="h-4 w-4 shrink-0" /> Créer</Button>
               <Button type="button" variant="secondary" onClick={() => navigate('/products')}>
-                Annuler
+                <X className="h-4 w-4 shrink-0" /> Annuler
               </Button>
             </div>
           </form>

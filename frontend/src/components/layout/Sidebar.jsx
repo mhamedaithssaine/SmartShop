@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Package, Users, ClipboardList, Tag } from 'lucide-react';
 import { useAuth } from '../../state/AuthContext.jsx';
 
 const links = [
-  { to: '/products', label: 'Produits', icon: '📦', adminOnly: false },
-  { to: '/clients', label: 'Clients', icon: '👥', adminOnly: true },
-  { to: '/orders', label: 'Commandes', icon: '📋', adminOnly: false },
+  { to: '/products', label: 'Produits', Icon: Package, adminOnly: false },
+  { to: '/clients', label: 'Clients', Icon: Users, adminOnly: true },
+  { to: '/orders', label: 'Commandes', Icon: ClipboardList, adminOnly: false },
+  { to: '/promo-codes', label: 'Codes promo', Icon: Tag, adminOnly: true },
 ];
 
 export function Sidebar() {
@@ -35,7 +37,7 @@ export function Sidebar() {
                 }`
               }
             >
-              <span className="text-lg">{link.icon}</span>
+              <link.Icon className="h-5 w-5 shrink-0" strokeWidth={2} aria-hidden />
               {link.label}
             </NavLink>
           </motion.div>

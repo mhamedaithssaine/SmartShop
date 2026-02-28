@@ -29,7 +29,7 @@ export function Button({
       whileTap={{ scale: disabled || loading ? 1 : 0.98 }}
       data-variant={variant}
       className={`
-        inline-flex items-center justify-center rounded-lg font-medium
+        inline-flex items-center justify-center gap-2 rounded-lg font-medium
         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900
         disabled:opacity-50 disabled:pointer-events-none
         transition-colors

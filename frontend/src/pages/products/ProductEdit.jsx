@@ -5,6 +5,7 @@ import { productApi } from '../../api/productApi.js';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { Input } from '../../components/ui/Input.jsx';
+import { Save, X, Trash2 } from 'lucide-react';
 import { confirmDialog } from '../../utils/confirm.js';
 
 export function ProductEdit() {
@@ -112,12 +113,12 @@ export function ProductEdit() {
             <Input label="Catégorie" value={categorie} onChange={(e) => setCategorie(e.target.value)} />
             {error && <p className="text-sm text-red-600">{error}</p>}
             <div className="flex flex-wrap gap-3">
-              <Button type="submit" loading={loading}>Enregistrer</Button>
+              <Button type="submit" loading={loading}><Save className="h-4 w-4 shrink-0" /> Enregistrer</Button>
               <Button type="button" variant="secondary" onClick={() => navigate('/products')}>
-                Annuler
+                <X className="h-4 w-4 shrink-0" /> Annuler
               </Button>
               <Button type="button" variant="danger" onClick={handleDelete} disabled={loading}>
-                Supprimer
+                <Trash2 className="h-4 w-4 shrink-0" /> Supprimer
               </Button>
             </div>
           </form>

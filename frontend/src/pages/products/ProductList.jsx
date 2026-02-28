@@ -8,6 +8,7 @@ import { Pagination } from '../../components/ui/Pagination.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Input } from '../../components/ui/Input.jsx';
+import { Pencil, Trash2, Plus } from 'lucide-react';
 import { formatAmount } from '../../utils/format.js';
 import { confirmDialog } from '../../utils/confirm.js';
 
@@ -72,10 +73,10 @@ export function ProductList() {
           render: (id) => (
             <div className="flex flex-wrap gap-2">
               <Link to={`/products/${id}/edit`}>
-                <Button variant="secondary" size="sm">Modifier</Button>
+                <Button variant="secondary" size="sm"><Pencil className="h-4 w-4 shrink-0" /> Modifier</Button>
               </Link>
               <Button variant="danger" size="sm" onClick={() => handleDelete(id)}>
-                Supprimer
+                <Trash2 className="h-4 w-4 shrink-0" /> Supprimer
               </Button>
             </div>
           ),
@@ -91,7 +92,7 @@ export function ProductList() {
           action={
             isAdmin && (
               <Link to="/products/new">
-                <Button>Nouveau produit</Button>
+                <Button><Plus className="h-4 w-4 shrink-0" /> Nouveau produit</Button>
               </Link>
             )
           }

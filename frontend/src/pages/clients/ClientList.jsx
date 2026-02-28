@@ -8,6 +8,7 @@ import { Button } from '../../components/ui/Button.jsx';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Input } from '../../components/ui/Input.jsx';
 import { Badge } from '../../components/ui/Badge.jsx';
+import { Eye, Pencil, Plus } from 'lucide-react';
 import { formatAmount } from '../../utils/format.js';
 
 const PAGE_SIZE = 10;
@@ -66,10 +67,10 @@ export function ClientList() {
       render: (id) => (
         <div className="flex gap-2">
           <Link to={`/clients/${id}`}>
-            <Button variant="ghost" size="sm">Détails</Button>
+            <Button variant="ghost" size="sm"><Eye className="h-4 w-4 shrink-0" /> Détails</Button>
           </Link>
           <Link to={`/clients/${id}/edit`}>
-            <Button variant="secondary" size="sm">Modifier</Button>
+            <Button variant="secondary" size="sm"><Pencil className="h-4 w-4 shrink-0" /> Modifier</Button>
           </Link>
         </div>
       ),
@@ -83,7 +84,7 @@ export function ClientList() {
           title="Clients"
           action={
             <Link to="/clients/new">
-              <Button>Nouveau client</Button>
+              <Button><Plus className="h-4 w-4 shrink-0" /> Nouveau client</Button>
             </Link>
           }
         />

@@ -11,6 +11,7 @@ import { Modal } from '../../components/ui/Modal.jsx';
 import { Input } from '../../components/ui/Input.jsx';
 import { formatAmount, formatDate } from '../../utils/format.js';
 import { PAYMENT_TYPE_OPTIONS, PAYMENT_MAX_ESPECES_DH, PAYMENT_TYPE, COMMANDE_STATUT } from '../../constants/backend.js';
+import { Banknote, Check, X, ArrowLeft, Save } from 'lucide-react';
 import { confirmDialog } from '../../utils/confirm.js';
 
 export function OrderDetail() {
@@ -175,21 +176,21 @@ export function OrderDetail() {
                     setPaymentModal(true);
                   }}
                 >
-                  Ajouter un paiement
+                  <Banknote className="h-4 w-4 shrink-0" /> Ajouter un paiement
                 </Button>
               )}
               {canConfirm && (
                 <Button variant="success" size="sm" onClick={handleConfirm} loading={actionLoading}>
-                  Confirmer la commande
+                  <Check className="h-4 w-4 shrink-0" /> Confirmer la commande
                 </Button>
               )}
               {canCancel && (
                 <Button variant="danger" size="sm" onClick={handleCancel} loading={actionLoading}>
-                  Annuler
+                  <X className="h-4 w-4 shrink-0" /> Annuler
                 </Button>
               )}
               <Link to="/orders">
-                <Button variant="secondary" size="sm">Retour</Button>
+                <Button variant="secondary" size="sm"><ArrowLeft className="h-4 w-4 shrink-0" /> Retour</Button>
               </Link>
             </div>
           }
@@ -351,10 +352,10 @@ export function OrderDetail() {
           )}
           <div className="flex gap-3 pt-2">
             <Button type="submit" variant="success" loading={paymentSubmitting}>
-              Enregistrer le paiement
+              <Save className="h-4 w-4 shrink-0" /> Enregistrer le paiement
             </Button>
             <Button type="button" variant="secondary" onClick={() => setPaymentModal(false)}>
-              Annuler
+              <X className="h-4 w-4 shrink-0" /> Annuler
             </Button>
           </div>
         </form>

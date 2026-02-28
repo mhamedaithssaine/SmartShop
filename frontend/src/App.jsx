@@ -12,6 +12,9 @@ import { ClientEdit } from './pages/clients/ClientEdit.jsx';
 import { OrderList } from './pages/orders/OrderList.jsx';
 import { OrderNew } from './pages/orders/OrderNew.jsx';
 import { OrderDetail } from './pages/orders/OrderDetail.jsx';
+import { PromoList } from './pages/promos/PromoList.jsx';
+import { PromoNew } from './pages/promos/PromoNew.jsx';
+import { PromoEdit } from './pages/promos/PromoEdit.jsx';
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
@@ -63,6 +66,9 @@ export default function App() {
           <Route path="orders" element={<OrderList />} />
           <Route path="orders/new" element={<AdminRoute><OrderNew /></AdminRoute>} />
           <Route path="orders/:id" element={<OrderDetail />} />
+          <Route path="promo-codes" element={<AdminRoute><PromoList /></AdminRoute>} />
+          <Route path="promo-codes/new" element={<AdminRoute><PromoNew /></AdminRoute>} />
+          <Route path="promo-codes/:id/edit" element={<AdminRoute><PromoEdit /></AdminRoute>} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
