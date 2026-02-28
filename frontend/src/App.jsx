@@ -17,8 +17,8 @@ function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary-600 border-t-transparent" />
+      <div className="flex min-h-screen items-center justify-center bg-slate-950">
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-violet-400 border-t-transparent" />
       </div>
     );
   }
@@ -30,8 +30,8 @@ function AdminRoute({ children }) {
   const { isAdmin, loading } = useAuth();
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary-600 border-t-transparent" />
+      <div className="flex min-h-screen items-center justify-center bg-slate-950">
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-violet-400 border-t-transparent" />
       </div>
     );
   }

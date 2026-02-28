@@ -40,3 +40,222 @@ body {
   border: 1px solid #e2e8f0;
   overflow: hidden;
 }
+
+/* Login page — dark form inputs */
+.login-dark .input-field {
+  background: rgb(30 41 59);
+  border-color: rgb(71 85 105);
+  color: rgb(248 250 252);
+}
+.login-dark .input-field::placeholder {
+  color: rgb(148 163 184);
+}
+.login-dark .input-field:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 1px #0ea5e9;
+}
+.login-dark label {
+  color: rgb(226 232 240);
+}
+.login-dark .input-field.border-red-500 {
+  border-color: rgb(239 68 68);
+}
+.login-dark .input-field.border-red-500:focus {
+  box-shadow: 0 0 0 1px rgb(239 68 68);
+}
+
+/* Modal dark (portal is outside .app-shell) */
+.modal-dark .input-field {
+  background: rgb(30 41 59);
+  border-color: rgb(71 85 105);
+  color: rgb(248 250 252);
+}
+.modal-dark .input-field::placeholder {
+  color: rgb(148 163 184);
+}
+.modal-dark .input-field:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 1px #0ea5e9;
+}
+.modal-dark label {
+  color: rgb(226 232 240);
+}
+.modal-dark .bg-red-50 {
+  background: rgb(127 29 29 / 0.3);
+  color: rgb(252 165 165);
+}
+
+/* App shell — dark theme (consistent with Login) */
+.app-shell .card {
+  background: rgb(15 23 42 / 0.85);
+  border-color: rgb(51 65 85);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2);
+}
+.app-shell .card-header,
+.app-shell [data-card-header] {
+  border-color: rgb(51 65 85);
+  background: rgb(30 41 59 / 0.6);
+}
+.app-shell .card-header h2,
+.app-shell [data-card-header] h2 {
+  color: rgb(226 232 240);
+}
+.app-shell .card-body,
+.app-shell [data-card-body] {
+  color: rgb(203 213 225);
+}
+.app-shell .input-field {
+  background: rgb(30 41 59);
+  border-color: rgb(71 85 105);
+  color: rgb(248 250 252);
+}
+.app-shell .input-field::placeholder {
+  color: rgb(148 163 184);
+}
+.app-shell .input-field:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 1px #0ea5e9;
+}
+.app-shell label {
+  color: rgb(226 232 240);
+}
+.app-shell select.input-field {
+  background: rgb(30 41 59);
+  color: rgb(248 250 252);
+}
+.app-shell select.input-field option {
+  background: rgb(15 23 42);
+  color: rgb(248 250 252);
+}
+.app-shell .text-red-600 {
+  color: rgb(248 113 113);
+}
+.app-shell button[data-variant="secondary"] {
+  background: rgb(51 65 85);
+  color: rgb(226 232 240);
+  border: 1px solid rgb(71 85 105);
+}
+.app-shell button[data-variant="secondary"]:hover:not(:disabled) {
+  background: rgb(71 85 105);
+  color: white;
+}
+.app-shell button[data-variant="ghost"] {
+  color: rgb(203 213 225);
+  background: transparent;
+}
+.app-shell button[data-variant="ghost"]:hover:not(:disabled) {
+  background: rgb(51 65 85);
+  color: white;
+}
+.app-shell button[data-variant="primary"] {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  color: white;
+}
+.app-shell button[data-variant="primary"]:hover:not(:disabled) {
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+  color: white;
+}
+.app-shell table thead {
+  background: rgb(30 41 59);
+}
+.app-shell table thead th {
+  color: rgb(203 213 225);
+}
+.app-shell table tbody {
+  border-color: rgb(51 65 85);
+}
+.app-shell table tbody tr {
+  border-color: rgb(51 65 85);
+}
+.app-shell table tbody td {
+  color: rgb(226 232 240);
+}
+.app-shell .bg-red-50 {
+  background: rgb(127 29 29 / 0.3);
+  color: rgb(252 165 165);
+}
+.app-shell a.text-primary-600,
+.app-shell .text-primary-600 {
+  color: rgb(167 139 250);
+}
+.app-shell a:hover {
+  color: rgb(196 181 253);
+}
+.app-shell .border-t.border-slate-200 {
+  border-color: rgb(51 65 85);
+}
+.app-shell dt.text-slate-500 {
+  color: rgb(148 163 184);
+}
+.app-shell dd {
+  color: rgb(226 232 240);
+}
+.app-shell h3.text-slate-700 {
+  color: rgb(226 232 240);
+}
+.app-shell .animate-spin.border-primary-600 {
+  border-color: rgb(167 139 250);
+  border-top-color: transparent;
+}
+
+/* Login page — animated gradient background */
+.login-page-bg {
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e1b4b 25%,
+    #0f172a 50%,
+    #0c4a6e 75%,
+    #0f172a 100%
+  );
+  background-size: 400% 400%;
+  animation: login-gradient-flow 18s ease infinite;
+}
+
+@keyframes login-gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.login-page-grid {
+  background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* SweetAlert2 — style cohérent plateforme (thème sombre) */
+.swal-platform {
+  border-radius: 1rem;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+}
+.swal-platform-title {
+  color: #f1f5f9 !important;
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+}
+.swal-platform-body {
+  color: #cbd5e1 !important;
+}
+.swal-platform-confirm {
+  background: linear-gradient(to right, #8b5cf6, #7c3aed) !important;
+  color: white !important;
+  font-weight: 500 !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1.25rem !important;
+  border: none !important;
+}
+.swal-platform-confirm:hover {
+  background: linear-gradient(to right, #7c3aed, #6d28d9) !important;
+}
+.swal-platform-cancel {
+  background: #334155 !important;
+  color: #e2e8f0 !important;
+  font-weight: 500 !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1.25rem !important;
+  border: 1px solid #475569 !important;
+}
+.swal-platform-cancel:hover {
+  background: #475569 !important;
+}

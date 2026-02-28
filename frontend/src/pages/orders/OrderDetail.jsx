@@ -11,6 +11,7 @@ import { Modal } from '../../components/ui/Modal.jsx';
 import { Input } from '../../components/ui/Input.jsx';
 import { formatAmount, formatDate } from '../../utils/format.js';
 import { PAYMENT_TYPE_OPTIONS, PAYMENT_MAX_ESPECES_DH, PAYMENT_TYPE, COMMANDE_STATUT } from '../../constants/backend.js';
+import { confirmDialog } from '../../utils/confirm.js';
 
 export function OrderDetail() {
   const { id } = useParams();
@@ -122,7 +123,8 @@ export function OrderDetail() {
   };
 
   const handleCancel = async () => {
-    if (!window.confirm('Annuler cette commande ?')) return;
+    const ok = await confirmDialog('Annuler cette commande ?', '', 'Annuler la commande', 'Retour');
+    if (!ok) return;
     setActionLoading(true);
     setError('');
     try {

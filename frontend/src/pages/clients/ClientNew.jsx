@@ -30,7 +30,8 @@ export function ClientNew() {
   };
 
   return (
-    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center">
+      <div className="w-full max-w-2xl">
       <Card>
         <CardHeader title="Nouveau client" />
         <CardBody>
@@ -67,6 +68,7 @@ export function ClientNew() {
           </form>
         </CardBody>
       </Card>
+      </div>
     </motion.div>
   );
 }

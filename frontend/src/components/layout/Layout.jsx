@@ -5,7 +5,7 @@ import { Header } from './Header.jsx';
 
 export function Layout() {
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="app-shell flex min-h-screen bg-slate-950">
       <Sidebar />
       <div className="flex flex-1 flex-col lg:pl-64">
         <Header />

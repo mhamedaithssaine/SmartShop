@@ -19,7 +19,7 @@ export function Card({ children, className = '', animate = true }) {
 
 export function CardHeader({ title, action }) {
   return (
-    <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50/50 px-6 py-4">
+    <div className="card-header flex items-center justify-between border-b border-slate-200 bg-slate-50/50 px-6 py-4">
       <h2 className="text-lg font-semibold text-slate-800">{title}</h2>
       {action}
     </div>
@@ -27,5 +27,5 @@ export function CardHeader({ title, action }) {
 }
 
 export function CardBody({ children, className = '' }) {
-  return <div className={`p-6 ${className}`}>{children}</div>;
+  return <div className={`card-body p-6 ${className}`}>{children}</div>;
 }
