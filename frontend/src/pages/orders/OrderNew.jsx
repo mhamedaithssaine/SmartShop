@@ -8,6 +8,7 @@ import { promoApi } from '../../api/promoApi.js';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { Input } from '../../components/ui/Input.jsx';
+import { Plus, Minus, Check, X } from 'lucide-react';
 import { formatAmount } from '../../utils/format.js';
 import { isValidPromoFormat, normalizePromoCode } from '../../utils/promo.js';
 
@@ -117,7 +118,7 @@ export function OrderNew() {
               <div className="mb-2 flex items-center justify-between">
                 <label className="text-sm font-medium text-slate-700">Produits</label>
                 <Button type="button" variant="secondary" size="sm" onClick={addLigne}>
-                  Ajouter une ligne
+                  <Plus className="h-4 w-4 shrink-0" /> Ajouter une ligne
                 </Button>
               </div>
               <div className="space-y-3">
@@ -144,7 +145,7 @@ export function OrderNew() {
                       className="input-field w-24"
                     />
                     <Button type="button" variant="ghost" size="sm" onClick={() => removeLigne(index)}>
-                      Retirer
+                      <Minus className="h-4 w-4 shrink-0" /> Retirer
                     </Button>
                   </div>
                 ))}
@@ -154,10 +155,10 @@ export function OrderNew() {
             {error && <p className="text-sm text-red-600">{error}</p>}
             <div className="flex gap-3">
               <Button type="submit" loading={loading} disabled={!lignes.some((l) => l.productId && Number(l.quantite) > 0)}>
-                Créer la commande
+                <Check className="h-4 w-4 shrink-0" /> Créer la commande
               </Button>
               <Button type="button" variant="secondary" onClick={() => navigate('/orders')}>
-                Annuler
+                <X className="h-4 w-4 shrink-0" /> Annuler
               </Button>
             </div>
           </form>

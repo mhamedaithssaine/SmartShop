@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { customerApi } from '../../api/customerApi.js';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Button } from '../../components/ui/Button.jsx';
+import { Save, X } from 'lucide-react';
 import { Input } from '../../components/ui/Input.jsx';
 
 export function ClientEdit() {
@@ -91,9 +92,9 @@ export function ClientEdit() {
             />
             {error && <p className="text-sm text-red-600">{error}</p>}
             <div className="flex gap-3">
-              <Button type="submit" loading={loading}>Enregistrer</Button>
+              <Button type="submit" loading={loading}><Save className="h-4 w-4 shrink-0" /> Enregistrer</Button>
               <Button type="button" variant="secondary" onClick={() => navigate(`/clients/${id}`)}>
-                Annuler
+                <X className="h-4 w-4 shrink-0" /> Annuler
               </Button>
             </div>
           </form>

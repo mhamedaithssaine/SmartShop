@@ -6,6 +6,7 @@ import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { Badge } from '../../components/ui/Badge.jsx';
 import { Table } from '../../components/ui/Table.jsx';
+import { Eye, Pencil } from 'lucide-react';
 import { formatAmount, formatDateTime } from '../../utils/format.js';
 
 export function ClientDetail() {
@@ -67,7 +68,7 @@ export function ClientDetail() {
       label: '',
       render: (oid) => (
         <Link to={`/orders/${oid}`}>
-          <Button variant="ghost" size="sm">Voir</Button>
+          <Button variant="ghost" size="sm"><Eye className="h-4 w-4 shrink-0" /> Voir</Button>
         </Link>
       ),
     },
@@ -80,7 +81,7 @@ export function ClientDetail() {
           title={client.nom}
           action={
             <Link to={`/clients/${id}/edit`}>
-              <Button variant="secondary">Modifier</Button>
+              <Button variant="secondary"><Pencil className="h-4 w-4 shrink-0" /> Modifier</Button>
             </Link>
           }
         />

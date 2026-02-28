@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../state/AuthContext.jsx';
 import { USER_ROLE } from '../../constants/backend.js';
+import { LogOut } from 'lucide-react';
 import { Button } from '../ui/Button.jsx';
 import { motion } from 'framer-motion';
 
@@ -27,7 +28,7 @@ export function Header() {
           {user?.role === USER_ROLE.ADMIN ? 'Admin' : 'Client'}
         </span>
         <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-300 hover:bg-slate-800 hover:text-white">
-          Déconnexion
+          <LogOut className="h-4 w-4 shrink-0" /> Déconnexion
         </Button>
       </motion.div>
     </header>

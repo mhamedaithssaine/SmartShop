@@ -10,6 +10,7 @@ import { Button } from '../../components/ui/Button.jsx';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Badge } from '../../components/ui/Badge.jsx';
 import { formatAmount, formatDate } from '../../utils/format.js';
+import { Eye, Plus } from 'lucide-react';
 import { COMMANDE_STATUT_OPTIONS } from '../../constants/backend.js';
 
 const PAGE_SIZE = 10;
@@ -82,7 +83,7 @@ export function OrderList() {
       label: '',
       render: (oid) => (
         <Link to={`/orders/${oid}`}>
-          <Button variant="ghost" size="sm">Voir</Button>
+          <Button variant="ghost" size="sm"><Eye className="h-4 w-4 shrink-0" /> Voir</Button>
         </Link>
       ),
     },
@@ -96,7 +97,7 @@ export function OrderList() {
           action={
             isAdmin && (
               <Link to="/orders/new">
-                <Button>Nouvelle commande</Button>
+                <Button><Plus className="h-4 w-4 shrink-0" /> Nouvelle commande</Button>
               </Link>
             )
           }
