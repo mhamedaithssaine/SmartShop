@@ -81,7 +81,8 @@ export function OrderNew() {
   };
 
   return (
-    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl">
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center">
+      <div className="w-full max-w-4xl">
       <Card>
         <CardHeader title="Nouvelle commande" />
         <CardBody>
@@ -162,6 +163,7 @@ export function OrderNew() {
           </form>
         </CardBody>
       </Card>
+      </div>
     </motion.div>
   );
 }

@@ -13,9 +13,9 @@ export function Sidebar() {
   const visibleLinks = links.filter((link) => !link.adminOnly || isAdmin);
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-slate-200 bg-white shadow-sm lg:flex">
-      <div className="flex h-16 items-center gap-2 border-b border-slate-200 px-6">
-        <span className="text-xl font-bold text-primary-600">SmartShop</span>
+    <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-slate-700/50 bg-slate-900/90 shadow-xl backdrop-blur-sm lg:flex">
+      <div className="flex h-16 items-center gap-2 border-b border-slate-700/50 px-6">
+        <span className="bg-gradient-to-r from-primary-400 to-violet-400 bg-clip-text text-xl font-bold text-transparent">SmartShop</span>
       </div>
       <nav className="flex-1 space-y-1 p-4">
         {visibleLinks.map((link, index) => (
@@ -30,8 +30,8 @@ export function Sidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                   isActive
-                    ? 'bg-primary-50 text-primary-700'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    ? 'bg-violet-500/20 text-violet-200'
+                    : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
                 }`
               }
             >

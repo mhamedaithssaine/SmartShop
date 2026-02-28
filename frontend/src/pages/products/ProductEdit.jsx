@@ -5,6 +5,7 @@ import { productApi } from '../../api/productApi.js';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { Input } from '../../components/ui/Input.jsx';
+import { confirmDialog } from '../../utils/confirm.js';
 
 export function ProductEdit() {
   const { id } = useParams();
@@ -58,7 +59,8 @@ export function ProductEdit() {
   };
 
   const handleDelete = async () => {
-    if (!window.confirm('Supprimer ce produit ? (soft delete)')) return;
+    const ok = await confirmDialog('Supprimer ce produit ?', 'Cette action effectue un soft delete.', 'Supprimer', 'Annuler');
+    if (!ok) return;
     setLoading(true);
     try {
       await productApi.delete(id);
@@ -82,8 +84,9 @@ export function ProductEdit() {
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="max-w-2xl"
+      className="flex justify-center"
     >
+      <div className="w-full max-w-2xl">
       <Card>
         <CardHeader title="Modifier le produit" />
         <CardBody>
@@ -120,6 +123,7 @@ export function ProductEdit() {
           </form>
         </CardBody>
       </Card>
+      </div>
     </motion.div>
   );
 }

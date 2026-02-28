@@ -20,18 +20,20 @@ export function Button({
 }) {
   const sizeClass = size === 'sm' ? 'px-3 py-1.5 text-sm' : size === 'lg' ? 'px-6 py-3 text-base' : 'px-4 py-2 text-sm';
 
+  const variantClass = variants[variant] || variants.primary;
   return (
     <motion.button
       type={type}
       disabled={disabled || loading}
       whileHover={{ scale: disabled || loading ? 1 : 1.02 }}
       whileTap={{ scale: disabled || loading ? 1 : 0.98 }}
+      data-variant={variant}
       className={`
         inline-flex items-center justify-center rounded-lg font-medium
-        focus:outline-none focus:ring-2 focus:ring-offset-2
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900
         disabled:opacity-50 disabled:pointer-events-none
         transition-colors
-        ${variants[variant] || variants.primary}
+        ${variantClass}
         ${sizeClass}
         ${className}
       `}

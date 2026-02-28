@@ -9,6 +9,7 @@ import { Button } from '../../components/ui/Button.jsx';
 import { Card, CardHeader, CardBody } from '../../components/ui/Card.jsx';
 import { Input } from '../../components/ui/Input.jsx';
 import { formatAmount } from '../../utils/format.js';
+import { confirmDialog } from '../../utils/confirm.js';
 
 const PAGE_SIZE = 10;
 
@@ -47,6 +48,18 @@ export function ProductList() {
 
   const totalPages = Math.ceil(products.length / PAGE_SIZE) || 1;
 
+  const handleDelete = async (id) => {
+    const ok = await confirmDialog('Supprimer ce produit ?', 'Cette action effectue un soft delete.', 'Supprimer', 'Annuler');
+    if (!ok) return;
+    setError('');
+    try {
+      await productApi.delete(id);
+      setProducts((prev) => prev.filter((p) => p.id !== id));
+    } catch (e) {
+      setError(e.message || 'Erreur lors de la suppression');
+    }
+  };
+
   const columns = [
     { key: 'nom', label: 'Nom' },
     { key: 'prixUnitaire', label: 'Prix HT', render: (v) => formatAmount(v) },
@@ -57,9 +70,14 @@ export function ProductList() {
           key: 'id',
           label: 'Actions',
           render: (id) => (
-            <Link to={`/products/${id}/edit`}>
-              <Button variant="secondary" size="sm">Modifier</Button>
-            </Link>
+            <div className="flex flex-wrap gap-2">
+              <Link to={`/products/${id}/edit`}>
+                <Button variant="secondary" size="sm">Modifier</Button>
+              </Link>
+              <Button variant="danger" size="sm" onClick={() => handleDelete(id)}>
+                Supprimer
+              </Button>
+            </div>
           ),
         }]
       : []),

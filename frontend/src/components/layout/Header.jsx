@@ -14,19 +14,19 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-200 bg-white/95 px-6 backdrop-blur">
+    <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-700/50 bg-slate-900/80 px-6 backdrop-blur-xl">
       <div className="flex items-center gap-4">
-        <h1 className="text-lg font-semibold text-slate-800 lg:text-xl">Tableau de bord</h1>
+        <h1 className="text-lg font-semibold text-white lg:text-xl">Tableau de bord</h1>
       </div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="flex items-center gap-3"
       >
-        <span className="text-sm text-slate-600">
+        <span className="text-sm text-slate-400">
           {user?.role === USER_ROLE.ADMIN ? 'Admin' : 'Client'}
         </span>
-        <Button variant="ghost" size="sm" onClick={handleLogout}>
+        <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-300 hover:bg-slate-800 hover:text-white">
           Déconnexion
         </Button>
       </motion.div>

@@ -1,17 +1,17 @@
 import { motion } from 'framer-motion';
 
 const styleMap = {
-  PENDING: 'bg-amber-100 text-amber-800',
-  CONFIRMED: 'bg-emerald-100 text-emerald-800',
-  CANCELED: 'bg-red-100 text-red-800',
-  REJECTED: 'bg-slate-200 text-slate-700',
-  BASIC: 'bg-slate-100 text-slate-600',
-  SILVER: 'bg-slate-200 text-slate-700',
-  GOLD: 'bg-amber-100 text-amber-800',
-  PLATINUM: 'bg-indigo-100 text-indigo-800',
-  EN_ATTENTE: 'bg-amber-100 text-amber-800',
-  ENCAISSE: 'bg-emerald-100 text-emerald-800',
-  REJETE: 'bg-red-100 text-red-800',
+  PENDING: 'bg-amber-500/20 text-amber-300',
+  CONFIRMED: 'bg-emerald-500/20 text-emerald-300',
+  CANCELED: 'bg-red-500/20 text-red-300',
+  REJECTED: 'bg-slate-500/20 text-slate-400',
+  BASIC: 'bg-slate-500/20 text-slate-400',
+  SILVER: 'bg-slate-400/20 text-slate-300',
+  GOLD: 'bg-amber-500/20 text-amber-300',
+  PLATINUM: 'bg-violet-500/20 text-violet-300',
+  EN_ATTENTE: 'bg-amber-500/20 text-amber-300',
+  ENCAISSE: 'bg-emerald-500/20 text-emerald-300',
+  REJETE: 'bg-red-500/20 text-red-300',
 };
 
 const labelMap = {
@@ -32,7 +32,7 @@ const labelMap = {
 };
 
 export function Badge({ value, variant, label }) {
-  const v = variant || styleMap[value] || 'bg-slate-100 text-slate-700';
+  const v = variant || styleMap[value] || 'bg-slate-500/20 text-slate-300';
   const text = label != null ? label : (labelMap[value] ?? value);
 
   return (
